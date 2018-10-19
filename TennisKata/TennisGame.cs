@@ -29,11 +29,22 @@ namespace TennisKata
                 return _scoreLookup[_firstPlayerScoreTimes] + " " + _scoreLookup[_secondPlayerScoreTimes];
             }
 
-            if (_firstPlayerScoreTimes >= 3)
-            {
-                return "Deuce";
-            }
+            return IsDeuce() ? Deuce() : SameScore();
+        }
+
+        private string SameScore()
+        {
             return _scoreLookup[_firstPlayerScoreTimes] + " All";
+        }
+
+        private bool IsDeuce()
+        {
+            return _firstPlayerScoreTimes >= 3;
+        }
+
+        private static string Deuce()
+        {
+            return "Deuce";
         }
 
         public void SecondPlayerScore()
