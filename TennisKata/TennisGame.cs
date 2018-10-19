@@ -13,6 +13,8 @@ namespace TennisKata
                 {3,"Forty" },
             };
 
+        private int _secondPlayerScoreTimes;
+
         public string Score()
         {
             if (_firstPlayerScoreTimes > 0)
@@ -29,7 +31,7 @@ namespace TennisKata
 
         public void SecondPlayerScore()
         {
-            throw new System.NotImplementedException();
+            _secondPlayerScoreTimes++;
         }
     }
 }
