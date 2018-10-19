@@ -37,10 +37,7 @@ namespace TennisKata
             {
                 if (_firstPlayerScoreTimes >= 3 && _secondPlayerScoreTimes >= 3)
                 {
-                    if (IsAdv())
-                    {
-                        return AdvPlayer() + " Adv";
-                    }
+                    return AdvPlayer() + (IsAdv() ? " Adv" : " Win");
                 }
                 return _scoreLookup[_firstPlayerScoreTimes] + " " + _scoreLookup[_secondPlayerScoreTimes];
             }
@@ -50,7 +47,8 @@ namespace TennisKata
 
         private bool IsAdv()
         {
-            return Math.Abs(_firstPlayerScoreTimes - _secondPlayerScoreTimes) == 1;
+            return Math.Abs(_firstPlayerScoreTimes - _secondPlayerScoreTimes) == 1
+                && _firstPlayerScoreTimes != 5 && _secondPlayerScoreTimes != 5;
         }
 
         private string AdvPlayer()
