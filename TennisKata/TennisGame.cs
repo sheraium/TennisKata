@@ -39,7 +39,9 @@ namespace TennisKata
                 {
                     if (Math.Abs(_firstPlayerScoreTimes - _secondPlayerScoreTimes) == 1)
                     {
-                        return _firstPlayer + " Adv";
+                        var advPlayer = _firstPlayerScoreTimes > _secondPlayerScoreTimes
+                                        ? _firstPlayer : _secondPlayer;
+                        return advPlayer + " Adv";
                     }
                 }
                 return _scoreLookup[_firstPlayerScoreTimes] + " " + _scoreLookup[_secondPlayerScoreTimes];
