@@ -6,6 +6,10 @@ namespace TennisKata
 
         public string Score()
         {
+            if (_firstPlayerScoreTimes == 3)
+            {
+                return "Forty Love";
+            }
             if (_firstPlayerScoreTimes == 2)
             {
                 return "Thirty Love";
