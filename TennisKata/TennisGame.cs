@@ -22,6 +22,11 @@ namespace TennisKata
             {
                 return _scoreLookup[_firstPlayerScoreTimes] + " " + _scoreLookup[_secondPlayerScoreTimes];
             }
+
+            if (_firstPlayerScoreTimes == 1)
+            {
+                return "Fiteen All";
+            }
             return "Love All";
         }
 
