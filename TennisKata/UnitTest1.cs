@@ -5,12 +5,18 @@ namespace TennisKata
     [TestClass]
     public class UnitTest1
     {
+        private TennisGame tennisGame = new TennisGame();
+
         [TestMethod]
         public void Love_All()
         {
-            TennisGame tennisGame = new TennisGame();
+            ScoreShouldBe("Love All");
+        }
+
+        private void ScoreShouldBe(string expected)
+        {
             string score = tennisGame.Score();
-            Assert.AreEqual("Love All", score);
+            Assert.AreEqual(expected, score);
         }
     }
 }
