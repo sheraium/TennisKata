@@ -31,11 +31,10 @@ namespace TennisKata
             {
                 if (_firstPlayerScoreTimes >= 3 && _secondPlayerScoreTimes >= 3)
                 {
+
                     if (IsAdv())
                     {
-                        var advPlayer = _firstPlayerScoreTimes > _secondPlayerScoreTimes
-                                        ? _firstPlayer : _secondPlayer;
-                        return advPlayer + " Adv";
+                        return AdvPlayer() + " Adv";
                     }
                 }
                 return _scoreLookup[_firstPlayerScoreTimes] + " " + _scoreLookup[_secondPlayerScoreTimes];
@@ -46,6 +45,12 @@ namespace TennisKata
                 return "Deuce";
             }
             return _scoreLookup[_firstPlayerScoreTimes] + " All";
+        }
+
+        private string AdvPlayer()
+        {
+            return _firstPlayerScoreTimes > _secondPlayerScoreTimes
+                ? _firstPlayer : _secondPlayer;
         }
 
         private bool IsAdv()
