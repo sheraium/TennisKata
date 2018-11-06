@@ -31,11 +31,11 @@ namespace TennisKata
             {
                 if (_firstPlayerScoreTimes >= 3 && _secondPlayerScoreTimes >= 3)
                 {
-
                     if (IsAdv())
                     {
                         return AdvPlayer() + " Adv";
                     }
+                    return AdvPlayer() + " Win";
                 }
                 return _scoreLookup[_firstPlayerScoreTimes] + " " + _scoreLookup[_secondPlayerScoreTimes];
             }
