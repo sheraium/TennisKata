@@ -72,6 +72,14 @@ namespace TennisKata
             ScoreShouldBe("Deuce");
         }
 
+        [TestMethod]
+        public void Deuce_When_4_4()
+        {
+            GivenFirstPlayerScore(4);
+            GivenSecondPlayerScore(4);
+            ScoreShouldBe("Deuce");
+        }
+
         private void GivenSecondPlayerScore(int times)
         {
             for (int i = 0; i < times; i++)
