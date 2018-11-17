@@ -25,26 +25,46 @@ namespace TennisKata
             _secondPlayer = secondPlayer;
         }
 
+        public void FirstPlayerScore()
+        {
+            _firstPlayerScoreTimes++;
+        }
+
         public string Score()
         {
-            if (_firstPlayerScoreTimes != _secondPlayerScoreTimes)
-            {
-                if (_firstPlayerScoreTimes >= 3 && _secondPlayerScoreTimes >= 3)
-                {
-                    if (Math.Abs(_firstPlayerScoreTimes - _secondPlayerScoreTimes) == 1
-                        && _firstPlayerScoreTimes != 5 && _secondPlayerScoreTimes != 5)
-                    {
-                        return AdvPlayer() + " Adv";
-                    }
-                }
+            return IsDifferentScore() ? IsReadyForWin() ? AdvPlayer() + (IsAdv() ? " Adv" : " Win") :
+                NormalScore() :
+                IsDeuce() ? Deuce() : SameScore();
+        }
 
-                return _scoreLookup[_firstPlayerScoreTimes] + " " + _scoreLookup[_secondPlayerScoreTimes];
-            }
-            if (_firstPlayerScoreTimes >= 3)
-            {
-                return "Deuce";
-            }
-            return _scoreLookup[_firstPlayerScoreTimes] + " All";
+        private bool IsDifferentScore()
+        {
+            return _firstPlayerScoreTimes != _secondPlayerScoreTimes;
+        }
+
+        private string NormalScore()
+        {
+            return _scoreLookup[_firstPlayerScoreTimes] + " " + _scoreLookup[_secondPlayerScoreTimes];
+        }
+
+        private bool IsReadyForWin()
+        {
+            return _firstPlayerScoreTimes >= 3 && _secondPlayerScoreTimes >= 3;
+        }
+
+        private static string Deuce()
+        {
+            return "Deuce";
+        }
+
+        private bool IsDeuce()
+        {
+            return _firstPlayerScoreTimes >= 3;
+        }
+
+        public void SecondPlayerScore()
+        {
+            _secondPlayerScoreTimes++;
         }
 
         private string AdvPlayer()
@@ -53,14 +73,15 @@ namespace TennisKata
                 ? _firstPlayer : _secondPlayer;
         }
 
-        public void FirstPlayerScore()
+        private bool IsAdv()
         {
-            _firstPlayerScoreTimes++;
+            return Math.Abs(_firstPlayerScoreTimes - _secondPlayerScoreTimes) == 1
+                   && _firstPlayerScoreTimes != 5 && _secondPlayerScoreTimes != 5;
         }
 
-        public void SecondPlayerScore()
+        private string SameScore()
         {
-            _secondPlayerScoreTimes++;
+            return _scoreLookup[_firstPlayerScoreTimes] + " All";
         }
     }
 }
