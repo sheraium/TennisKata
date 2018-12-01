@@ -83,15 +83,15 @@ namespace TennisKata
         [TestMethod]
         public void Joey_Adv()
         {
-            GivenFirstPlayerScoreTimes(3);
-            GivenSecondPlayerScoreTimes(4);
+            GivenFirstPlayerScoreTimes(4);
+            GivenSecondPlayerScoreTimes(3);
             ScoreShouldBe("Joey Adv");
         }
 
         [TestMethod]
         public void Tom_Adv()
         {
-            GivenFirstPlayerScoreTimes(4);
+            GivenFirstPlayerScoreTimes(3);
             GivenSecondPlayerScoreTimes(4);
             ScoreShouldBe("Tom Adv");
         }

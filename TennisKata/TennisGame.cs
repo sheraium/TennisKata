@@ -31,10 +31,9 @@ namespace TennisKata
             {
                 if (_firstPlayerScoreTimes >= 3 && _secondPlayerScoreTimes >= 3)
                 {
-                    if (Math.Abs(_firstPlayerScoreTimes - _secondPlayerScoreTimes) == 1
-                        && _firstPlayerScoreTimes != 5 && _secondPlayerScoreTimes != 5)
+                    if (IsAdv())
                     {
-                        return _firstPlayer + " Adv";
+                        return AdvPlayer() + " Adv";
                     }
                 }
 
@@ -45,6 +44,18 @@ namespace TennisKata
                 return "Deuce";
             }
             return _scoreLookup[_firstPlayerScoreTimes] + " All";
+        }
+
+        private bool IsAdv()
+        {
+            return Math.Abs(_firstPlayerScoreTimes - _secondPlayerScoreTimes) == 1
+                   && _firstPlayerScoreTimes != 5 && _secondPlayerScoreTimes != 5;
+        }
+
+        private string AdvPlayer()
+        {
+            return _firstPlayerScoreTimes > _secondPlayerScoreTimes
+                ? _firstPlayer : _secondPlayer;
         }
 
         public void FirstPlayerScore()
