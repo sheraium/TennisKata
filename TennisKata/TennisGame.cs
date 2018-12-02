@@ -31,18 +31,27 @@ namespace TennisKata
             {
                 if (_firstPlayerScoreTimes >= 3 && _secondPlayerScoreTimes >= 3)
                 {
-                    if (Math.Abs(_firstPlayerScoreTimes - _secondPlayerScoreTimes) == 1
-                        && _firstPlayerScoreTimes != 5 && _secondPlayerScoreTimes != 5)
+                    if (IsAdv())
                     {
-                        var advPlayer = _firstPlayerScoreTimes > _secondPlayerScoreTimes
-                                        ? _firstPlayer : _secondPlayer;
-                        return advPlayer + " Adv";
+                        return AdvPlayer() + " Adv";
                     }
                 }
 
                 return NormalScore();
             }
             return IsDeuce() ? Deuce() : SameScore();
+        }
+
+        private bool IsAdv()
+        {
+            return Math.Abs(_firstPlayerScoreTimes - _secondPlayerScoreTimes) == 1
+                   && _firstPlayerScoreTimes != 5 && _secondPlayerScoreTimes != 5;
+        }
+
+        private string AdvPlayer()
+        {
+            return _firstPlayerScoreTimes > _secondPlayerScoreTimes
+                ? _firstPlayer : _secondPlayer;
         }
 
         private static string Deuce()
