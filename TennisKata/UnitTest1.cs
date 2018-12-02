@@ -13,6 +13,13 @@ namespace TennisKata
             ScoreShouldBe("Love All");
         }
 
+        [TestMethod]
+        public void Fifteen_Love()
+        {
+            tennisGame.FirstPlayerScore();
+            ScoreShouldBe("Fifteen Love");
+        }
+
         private void ScoreShouldBe(string expected)
         {
             var score = tennisGame.Score();
