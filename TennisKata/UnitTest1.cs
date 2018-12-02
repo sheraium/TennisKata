@@ -30,7 +30,7 @@ namespace TennisKata
         [TestMethod]
         public void Forty_Love()
         {
-            GivenFirstPlayerScoreTimes(2);
+            GivenFirstPlayerScoreTimes(3);
             ScoreShouldBe("Forty Love");
         }
 
