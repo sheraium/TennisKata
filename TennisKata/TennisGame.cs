@@ -27,16 +27,14 @@ namespace TennisKata
 
         public string Score()
         {
-            if (IsDifferent())
-            {
-                if (_firstPlayerScoreTimes >= 3 && _secondPlayerScoreTimes >= 3)
-                {
-                    return AdvPlayer() + (IsAdv() ? " Adv" : " Win");
-                }
+            return IsDifferent() ? IsReadyForWin() ? AdvPlayer() + (IsAdv() ? " Adv" : " Win") :
+                NormalScore() :
+                IsDeuce() ? Deuce() : SameScore();
+        }
 
-                return NormalScore();
-            }
-            return IsDeuce() ? Deuce() : SameScore();
+        private bool IsReadyForWin()
+        {
+            return _firstPlayerScoreTimes >= 3 && _secondPlayerScoreTimes >= 3;
         }
 
         private bool IsAdv()
