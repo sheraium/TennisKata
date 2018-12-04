@@ -8,6 +8,7 @@ namespace TennisKata
 
         private Dictionary<int, string> _scoreLookup = new Dictionary<int, string>()
             {
+                {0,"Love" },
                 {1,"Fifteen" },
                 {2,"Thirty" },
                 {3,"Forty" },
@@ -17,20 +18,22 @@ namespace TennisKata
 
         public string Score()
         {
-            if (_secondPlayerSocreTimes == 2)
+            if (IsDifferent())
             {
-                return "Love Thirty";
-            }
-            if (_secondPlayerSocreTimes == 1)
-            {
-                return "Love Fifteen";
-            }
-            if (_firstPlayerScoreTimes > 0)
-            {
-                return _scoreLookup[_firstPlayerScoreTimes] + " Love";
+                return NormalScore();
             }
 
             return "Love All";
+        }
+
+        private bool IsDifferent()
+        {
+            return _firstPlayerScoreTimes != _secondPlayerSocreTimes;
+        }
+
+        private string NormalScore()
+        {
+            return _scoreLookup[_firstPlayerScoreTimes] + " " + _scoreLookup[_secondPlayerSocreTimes];
         }
 
         public void FirstPlayerScore()
