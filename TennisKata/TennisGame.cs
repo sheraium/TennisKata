@@ -29,12 +29,11 @@ namespace TennisKata
         {
             if (IsDifferent())
             {
-                if (_firstPlayerScoreTimes >= 3 & _secondPlayerSocreTimes >= 3)
+                if (IsReadyForWin())
                 {
-                    if (Math.Abs(_firstPlayerScoreTimes - _secondPlayerSocreTimes) == 1
-                        && _firstPlayerScoreTimes != 5 && _secondPlayerSocreTimes != 5)
+                    if (IsAdv())
                     {
-                        return _firstPlayer + " Adv";
+                        return AdvPlayer() + " Adv";
                     }
                 }
 
@@ -42,6 +41,23 @@ namespace TennisKata
             }
 
             return IsDeuce() ? Deuce() : SameScore();
+        }
+
+        private bool IsReadyForWin()
+        {
+            return _firstPlayerScoreTimes >= 3 & _secondPlayerSocreTimes >= 3;
+        }
+
+        private string AdvPlayer()
+        {
+            return _firstPlayerScoreTimes > _secondPlayerSocreTimes
+                ? _firstPlayer : _secondPlayer;
+        }
+
+        private bool IsAdv()
+        {
+            return Math.Abs(_firstPlayerScoreTimes - _secondPlayerSocreTimes) == 1
+                   && _firstPlayerScoreTimes != 5 && _secondPlayerSocreTimes != 5;
         }
 
         private static string Deuce()
