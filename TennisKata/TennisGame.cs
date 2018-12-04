@@ -1,9 +1,12 @@
+using System;
 using System.Collections.Generic;
 
 namespace TennisKata
 {
     public class TennisGame
     {
+        private readonly string _firstPlayer;
+        private readonly string _secondPlayer;
         private int _firstPlayerScoreTimes;
 
         private Dictionary<int, string> _scoreLookup = new Dictionary<int, string>()
@@ -16,10 +19,25 @@ namespace TennisKata
 
         private int _secondPlayerSocreTimes;
 
+        public TennisGame(string firstPlayer, string secondPlayer)
+        {
+            _firstPlayer = firstPlayer;
+            _secondPlayer = secondPlayer;
+        }
+
         public string Score()
         {
             if (IsDifferent())
             {
+                if (_firstPlayerScoreTimes >= 3 & _secondPlayerSocreTimes >= 3)
+                {
+                    if (Math.Abs(_firstPlayerScoreTimes - _secondPlayerSocreTimes) == 1
+                        && _firstPlayerScoreTimes != 5 && _secondPlayerSocreTimes != 5)
+                    {
+                        return _firstPlayer + " Adv";
+                    }
+                }
+
                 return NormalScore();
             }
 
