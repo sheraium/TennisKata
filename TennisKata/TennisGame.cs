@@ -22,11 +22,17 @@ namespace TennisKata
                 return NormalScore();
             }
 
-            if (_firstPlayerScoreTimes>=3)
-            {
-                return "Deuce";
-            }
-           return SameScore();
+            return IsDeuce() ? Deuce() : SameScore();
+        }
+
+        private static string Deuce()
+        {
+            return "Deuce";
+        }
+
+        private bool IsDeuce()
+        {
+            return _firstPlayerScoreTimes>=3;
         }
 
         private string SameScore()
