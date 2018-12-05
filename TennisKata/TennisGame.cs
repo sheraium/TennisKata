@@ -22,6 +22,10 @@ namespace TennisKata
                 return NormalScore();
             }
 
+            if (_firstPlayerScoreTimes==3)
+            {
+                return "Deuce";
+            }
            return SameScore();
         }
 
