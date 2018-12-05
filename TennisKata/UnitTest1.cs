@@ -5,7 +5,7 @@ namespace TennisKata
     [TestClass]
     public class UnitTest1
     {
-        TennisGame tennisGame = new TennisGame();
+        TennisGame tennisGame = new TennisGame("Joey","Tom");
         [TestMethod]
         public void Love_All()
         {
