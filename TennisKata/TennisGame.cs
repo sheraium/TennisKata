@@ -22,7 +22,7 @@ namespace TennisKata
                 return NormalScore();
             }
 
-            return SameScore();
+           return SameScore();
         }
 
         private string SameScore()

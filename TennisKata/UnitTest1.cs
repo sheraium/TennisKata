@@ -62,6 +62,14 @@ namespace TennisKata
             GivenSecondPlayerScoreTimes(2);
             ScoreShouldBe("Thirty All");
         }
+
+        [TestMethod]
+        public void Deuce()
+        {
+            GivenFirstPlayerScoreTimes(3);
+            GivenSecondPlayerScoreTimes(3);
+            ScoreShouldBe("Deuce");
+        }
         private void GivenSecondPlayerScoreTimes(int times)
         {
             for (int i = 0; i < times; i++)
