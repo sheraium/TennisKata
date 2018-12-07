@@ -34,7 +34,9 @@ namespace TennisKata
                 {
                     if (IsAdv())
                     {
-                        return _firstPlayer + " Adv";
+                        var advPlayer = _firstPlayerScoreTimes > _secondPlayerScoreTimes
+                                       ? _firstPlayer : _secondPlayer;
+                        return advPlayer + " Adv";
                     }
                 }
 
