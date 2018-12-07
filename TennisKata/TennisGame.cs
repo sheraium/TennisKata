@@ -14,8 +14,14 @@ namespace TennisKata
                 {3,"Forty" },
             };
 
+        private int _secondPlayerScoreTimes;
+
         public string Score()
         {
+            if (_secondPlayerScoreTimes == 1)
+            {
+                return "Love Fifteen";
+            }
             if (_firstPlayerScoreTimes > 0)
             {
                 return _scoreLookup[_firstPlayerScoreTimes] + " Love";
@@ -31,7 +37,7 @@ namespace TennisKata
 
         public void SecondPlayerScore()
         {
-            throw new System.NotImplementedException();
+            _secondPlayerScoreTimes++;
         }
     }
 }
