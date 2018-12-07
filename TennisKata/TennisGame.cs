@@ -34,9 +34,7 @@ namespace TennisKata
                 {
                     if (IsAdv())
                     {
-                        var advPlayer = _firstPlayerScoreTimes > _secondPlayerScoreTimes
-                                       ? _firstPlayer : _secondPlayer;
-                        return advPlayer + " Adv";
+                        return AdvPlayer() + " Adv";
                     }
                 }
 
@@ -44,6 +42,12 @@ namespace TennisKata
             }
 
             return IsDeuce() ? Deuce() : SameScore();
+        }
+
+        private string AdvPlayer()
+        {
+            return _firstPlayerScoreTimes > _secondPlayerScoreTimes
+                ? _firstPlayer : _secondPlayer;
         }
 
         private bool IsReadyForWin()
