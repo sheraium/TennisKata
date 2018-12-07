@@ -23,6 +23,10 @@ namespace TennisKata
             {
                 return NormalScore();
             }
+            if (_firstPlayerScoreTimes == 1)
+            {
+                return "Fifteen All";
+            }
             return "Love All";
         }
 
