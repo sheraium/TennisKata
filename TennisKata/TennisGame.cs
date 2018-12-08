@@ -31,10 +31,7 @@ namespace TennisKata
             {
                 if (IsReadyForWin())
                 {
-                    if (IsAdv())
-                    {
-                        return AdvPlayer() + " Adv";
-                    }
+                    return AdvPlayer() + (IsAdv() ? " Adv" : " Win");
                 }
 
                 return NormalScore();
