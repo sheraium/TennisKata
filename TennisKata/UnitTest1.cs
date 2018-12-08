@@ -10,7 +10,7 @@ namespace TennisKata
         {
             TennisGame tennisGame = new TennisGame();
             var score = tennisGame.Score();
-            Assert.AreEqual("Love", score);
+            Assert.AreEqual("Love All", score);
         }
     }
 }
