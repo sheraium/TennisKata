@@ -38,8 +38,9 @@ namespace TennisKata
         public void Love_Fifteen()
         {
             tennisGame.SecondPlayerScore();
-            ScoreShouldBe("Forty Love");
+            ScoreShouldBe("Love Fifteen");
         }
+
         private void GivenFirstPlayerScoreTimes(int times)
         {
             for (int i = 0; i < times; i++)
