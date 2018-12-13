@@ -16,7 +16,6 @@ namespace TennisKata
         private int _secondPlayerScoreTimes;
 
         public string Score()
-
         {
             if (_secondPlayerScoreTimes == 1)
             {
