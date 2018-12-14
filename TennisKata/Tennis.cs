@@ -23,15 +23,12 @@ namespace TennisKata
                 return NormalScore();
             }
 
-            if (_firstPlayerScoreTimes == 2)
-            {
-                return "Thirty All";
-            }
-            if (_firstPlayerScoreTimes == 1)
-            {
-                return "Fifteen All";
-            }
-            return "Love All";
+            return SameScore();
+        }
+
+        private string SameScore()
+        {
+            return $"{_scoreLookup[_firstPlayerScoreTimes]} All";
         }
 
         private bool IsDifferent()
