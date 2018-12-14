@@ -6,5 +6,10 @@ namespace TennisKata
         {
             return "Love All";
         }
+
+        public void FirstPlayerScoreTimes()
+        {
+            throw new System.NotImplementedException();
+        }
     }
 }
