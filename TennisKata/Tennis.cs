@@ -5,7 +5,6 @@ namespace TennisKata
         private int _firstPlayerScoreTimes;
 
         public string Score()
-
         {
             if (_firstPlayerScoreTimes == 1)
             {
