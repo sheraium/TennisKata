@@ -27,5 +27,10 @@ namespace TennisKata
         {
             _firstPlayerScoreTimes++;
         }
+
+        public void SecondPlayerScore()
+        {
+            throw new System.NotImplementedException();
+        }
     }
 }
