@@ -1,20 +1,24 @@
+using System.Collections.Generic;
+
 namespace TennisKata
 {
     public class Tennis
     {
         private int _firstPlayerScoreTimes;
 
+        private Dictionary<int, string> _scoreLookup = new Dictionary<int, string>
+            {
+                {1,"Fifteen"},
+                {2,"Thirty"},
+            };
+
         public string Score()
         {
-            if (_firstPlayerScoreTimes == 1)
+            if (_firstPlayerScoreTimes > 0)
             {
-                return "Fifteen Love";
+                return _scoreLookup[_firstPlayerScoreTimes] + " All";
             }
 
-            if (_firstPlayerScoreTimes == 2)
-            {
-                return "Thirty Love";
-            }
             return "Love All";
         }
 
