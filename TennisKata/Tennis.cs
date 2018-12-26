@@ -27,21 +27,9 @@ namespace TennisKata
 
         public string Score()
         {
-            if (IsDifferent())
-            {
-                if (IsReadyForWin())
-                {
-                    if (IsAdv())
-                    {
-                        return AdvPlayer() + " Adv";
-                    }
-                    return AdvPlayer() + " Win";
-                }
-
-                return NoramlScore();
-            }
-
-            return IsDeuce() ? Deuce() : SameScore();
+            return IsDifferent() ? IsReadyForWin() ? IsAdv() ? AdvPlayer() + " Adv" : AdvPlayer() + " Win" :
+                NoramlScore() :
+                IsDeuce() ? Deuce() : SameScore();
         }
 
         private bool IsReadyForWin()
