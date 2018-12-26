@@ -23,6 +23,10 @@ namespace TennisKata
                 return NoramlScore();
             }
 
+            if (_firstPlayerScoreTimes == 2)
+            {
+                return "Thirty All";
+            }
             if (_firstPlayerScoreTimes == 1)
             {
                 return "Fifteen All";
