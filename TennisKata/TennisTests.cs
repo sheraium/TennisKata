@@ -52,7 +52,7 @@ namespace TennisKata
         public void Fifteen_All()
         {
             GivenFirstPlayerScoreTimes(1);
-            GivenSecondPlayerScoreTimes(2);
+            GivenSecondPlayerScoreTimes(1);
             ScoreShouldBe("Fifteen All");
         }
 
