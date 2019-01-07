@@ -5,7 +5,7 @@ namespace TennisKata
     [TestClass]
     public class TennisTests
     {
-        private Tennis tennis = new Tennis();
+        private Tennis tennis = new Tennis("Joey","Tom");
 
         [TestMethod]
         public void Love_All()
