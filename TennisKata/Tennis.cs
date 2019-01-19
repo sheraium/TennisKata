@@ -22,7 +22,7 @@ namespace TennisKata
             {
                 return NoramlScore();
             }
-            if (_firstPlayerScoreTimes == 3)
+            if (_firstPlayerScoreTimes >= 3)
             {
                 return "Deuce";
             }
