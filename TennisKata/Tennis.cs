@@ -29,16 +29,7 @@ namespace TennisKata
         {
             if (IsDifferent())
             {
-                if (IsReadyForWin())
-                {
-                    if (IsAdv())
-                    {
-                        return AdvPlayer() + " Adv";
-                    }
-                    return AdvPlayer() + " Win";
-                }
-
-                return NoramlScore();
+                return IsReadyForWin() ? IsAdv() ? AdvPlayer() + " Adv" : AdvPlayer() + " Win" : NoramlScore();
             }
             return IsDeuce() ? Deuce() : SameScore();
         }
