@@ -5,7 +5,7 @@ namespace TennisKata
     [TestClass]
     public class TennisTests
     {
-        private Tennis tennis = new Tennis();
+        private Tennis tennis = new Tennis("Joey","Tom");
 
         [TestMethod]
         public void Love_All()
@@ -80,6 +80,13 @@ namespace TennisKata
             ScoreShouldBe("Deuce");
         }
 
+        [TestMethod]
+        public void Joey_Adv()
+        {
+            GivenFirstPlayerScoreTimes(4);
+            GivenSecondPlayerScoreTimes(3);
+            ScoreShouldBe("Joey Adv");
+        }
         private void GivenSecondPlayerScoreTimes(int times)
         {
             for (var i = 0; i < times; i++)
