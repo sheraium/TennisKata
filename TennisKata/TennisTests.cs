@@ -100,8 +100,8 @@ namespace TennisKata
         public void SecondPlayer_Win()
         {
             GivenFirstPlayerScoreTimes(4);
-            GivenSecondPlayerScoreTimes(5);
-            ScoreShouldBe("Ton Win");
+            GivenSecondPlayerScoreTimes(6);
+            ScoreShouldBe("Tom Win");
         }
 
         private void GivenSecondPlayerScoreTimes(int times)
