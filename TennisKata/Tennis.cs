@@ -33,15 +33,35 @@ namespace TennisKata
                     return AdvPlayer() + " Adv";
                 }
 
-                return $"{_scoreLookup[_firstPlayerScoreTimes]} {_scoreLookup[_secondPlayerScoreTimes]}";
+                if (_firstPlayerScoreTimes == 5)
+                {
+                    return AdvPlayer() + " Win";
+                }
+                return NormalScore();
             }
 
-            if (_firstPlayerScoreTimes >= 3)
-            {
-                return "Deuce";
-            }
+            return IsDeuce() ? Deuce() : SameScore();
+        }
+
+        private string NormalScore()
+        {
+            return $"{_scoreLookup[_firstPlayerScoreTimes]} {_scoreLookup[_secondPlayerScoreTimes]}";
+        }
+
+        private string SameScore()
+        {
             return _scoreLookup[_firstPlayerScoreTimes] +
                    " All";
+        }
+
+        private static string Deuce()
+        {
+            return "Deuce";
+        }
+
+        private bool IsDeuce()
+        {
+            return _firstPlayerScoreTimes >= 3;
         }
 
         private bool IsDifferentScore()

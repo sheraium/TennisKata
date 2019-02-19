@@ -88,6 +88,22 @@ namespace TennisKata
             ScoreShouldBe("Tom Adv");
         }
 
+        [TestMethod]
+        public void FirstPlayer_Win()
+        {
+            GivenFirstPlayerScoreTimes(5);
+            GivenSecondPlayerScoreTimes(3);
+            ScoreShouldBe("Joey Win");
+        }
+
+        [TestMethod]
+        public void SecondPlayer_Win()
+        {
+            GivenFirstPlayerScoreTimes(4);
+            GivenSecondPlayerScoreTimes(5);
+            ScoreShouldBe("Ton Win");
+        }
+
         private void GivenSecondPlayerScoreTimes(int times)
         {
             for (int i = 0; i < times; i++)
