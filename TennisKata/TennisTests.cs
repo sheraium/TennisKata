@@ -31,7 +31,7 @@ namespace TennisKata
         public void Forty_Love()
         {
             GivenFirstPlayerScoreTimes(3);
-            ScoreShouldBe("Thirty Love");
+            ScoreShouldBe("Forty Love");
         }
 
         private void GivenFirstPlayerScoreTimes(int times)
