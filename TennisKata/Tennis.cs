@@ -4,7 +4,7 @@ namespace TennisKata
     {
         public string Score()
         {
-            return "Love All";
+            throw new System.NotImplementedException();
         }
     }
 }
