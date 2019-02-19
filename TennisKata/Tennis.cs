@@ -5,6 +5,7 @@ namespace TennisKata
     public class Tennis
     {
         private readonly string _firstPlayer;
+        private readonly string _secondPlayer;
         private int _firstPlayerScoreTimes;
 
         private Dictionary<int, string> _scoreLookup = new Dictionary<int, string>
@@ -17,9 +18,10 @@ namespace TennisKata
 
         private int _secondPlayerScoreTimes;
 
-        public Tennis(string firstPlayer)
+        public Tennis(string firstPlayer, string secondPlayer)
         {
             _firstPlayer = firstPlayer;
+            _secondPlayer = secondPlayer;
         }
 
         public string Score()
@@ -29,6 +31,10 @@ namespace TennisKata
                 if (_firstPlayerScoreTimes == 4)
                 {
                     return _firstPlayer + " Adv";
+                }
+                if (_secondPlayerScoreTimes == 4)
+                {
+                    return _secondPlayer + " Adv";
                 }
 
                 return $"{_scoreLookup[_firstPlayerScoreTimes]} {_scoreLookup[_secondPlayerScoreTimes]}";
