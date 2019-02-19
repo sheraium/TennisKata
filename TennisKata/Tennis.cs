@@ -26,15 +26,11 @@ namespace TennisKata
 
         public string Score()
         {
-            if (_firstPlayerScoreTimes != _secondPlayerScoreTimes)
+            if (IsDifferentScore())
             {
-                if (_firstPlayerScoreTimes == 4)
+                if (_firstPlayerScoreTimes == 4 || _secondPlayerScoreTimes == 4)
                 {
-                    return _firstPlayer + " Adv";
-                }
-                if (_secondPlayerScoreTimes == 4)
-                {
-                    return _secondPlayer + " Adv";
+                    return AdvPlayer() + " Adv";
                 }
 
                 return $"{_scoreLookup[_firstPlayerScoreTimes]} {_scoreLookup[_secondPlayerScoreTimes]}";
@@ -46,6 +42,19 @@ namespace TennisKata
             }
             return _scoreLookup[_firstPlayerScoreTimes] +
                    " All";
+        }
+
+        private bool IsDifferentScore()
+        {
+            return _firstPlayerScoreTimes != _secondPlayerScoreTimes;
+        }
+
+        private string AdvPlayer()
+        {
+            var advPlayer = _firstPlayerScoreTimes > _secondPlayerScoreTimes
+                ? _firstPlayer
+                : _secondPlayer;
+            return advPlayer;
         }
 
         public void FirstPlayerScore()
