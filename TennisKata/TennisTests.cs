@@ -1,6 +1,6 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace TennisKata
+namespace TennisKata2
 {
     [TestClass]
     public class TennisTests
@@ -67,46 +67,43 @@ namespace TennisKata
         [TestMethod]
         public void Deuce()
         {
-            GivenFirstPlayerScoreTimes(3);
-            GivenSecondPlayerScoreTimes(3);
+            GivenDeuce();
             ScoreShouldBe("Deuce");
         }
 
         [TestMethod]
         public void FirstPlayer_Adv()
         {
-            GivenFirstPlayerScoreTimes(4);
-            GivenSecondPlayerScoreTimes(3);
+            GivenDeuce();
+            GivenFirstPlayerScoreTimes(1);
             ScoreShouldBe("Joey Adv");
         }
 
         [TestMethod]
         public void SecondPlayer_Adv()
         {
-            GivenFirstPlayerScoreTimes(3);
-            GivenSecondPlayerScoreTimes(4);
+            GivenDeuce();
+            GivenSecondPlayerScoreTimes(1);
             ScoreShouldBe("Tom Adv");
-        }
-
-        [TestMethod]
-        public void FirstPlayer_Win()
-        {
-            GivenFirstPlayerScoreTimes(5);
-            GivenSecondPlayerScoreTimes(3);
-            ScoreShouldBe("Joey Win");
         }
 
         [TestMethod]
         public void SecondPlayer_Win()
         {
-            GivenFirstPlayerScoreTimes(4);
-            GivenSecondPlayerScoreTimes(6);
+            GivenDeuce();
+            GivenSecondPlayerScoreTimes(2);
             ScoreShouldBe("Tom Win");
+        }
+
+        private void GivenDeuce()
+        {
+            GivenFirstPlayerScoreTimes(3);
+            GivenSecondPlayerScoreTimes(3);
         }
 
         private void GivenSecondPlayerScoreTimes(int times)
         {
-            for (int i = 0; i < times; i++)
+            for (var i = 0; i < times; i++)
             {
                 _tennis.SecondPlayerScore();
             }
@@ -114,7 +111,7 @@ namespace TennisKata
 
         private void GivenFirstPlayerScoreTimes(int times)
         {
-            for (int i = 0; i < times; i++)
+            for (var i = 0; i < times; i++)
             {
                 _tennis.FirstPlayerScore();
             }
@@ -122,8 +119,7 @@ namespace TennisKata
 
         private void ScoreShouldBe(string expected)
         {
-            var score = _tennis.Score();
-            Assert.AreEqual(expected, score);
+            Assert.AreEqual(expected, _tennis.Score());
         }
     }
 }

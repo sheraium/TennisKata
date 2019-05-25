@@ -1,13 +1,13 @@
 using System;
 using System.Collections.Generic;
 
-namespace TennisKata
+namespace TennisKata2
 {
     public class Tennis
     {
         private readonly string _firstPlayer;
         private readonly string _secondPlayer;
-        private int _firstPlayerScoreTimes;
+        private int _firstPlayerScore;
 
         private Dictionary<int, string> _scoreLookup = new Dictionary<int, string>
         {
@@ -17,7 +17,7 @@ namespace TennisKata
             {3,"Forty" },
         };
 
-        private int _secondPlayerScoreTimes;
+        private int _secondPlayerScore;
 
         public Tennis(string firstPlayer, string secondPlayer)
         {
@@ -27,30 +27,7 @@ namespace TennisKata
 
         public string Score()
         {
-            return IsDifferentScore() ? IsGamePoint() ? AdvPlayer() + (IsAdv() ? " Adv" : " Win") :
-                NormalScore() :
-                IsDeuce() ? Deuce() : SameScore();
-        }
-
-        private bool IsAdv()
-        {
-            return Math.Abs(_firstPlayerScoreTimes - _secondPlayerScoreTimes) == 1;
-        }
-
-        private bool IsGamePoint()
-        {
-            return _firstPlayerScoreTimes >= 3 && _secondPlayerScoreTimes >= 3;
-        }
-
-        private string NormalScore()
-        {
-            return $"{_scoreLookup[_firstPlayerScoreTimes]} {_scoreLookup[_secondPlayerScoreTimes]}";
-        }
-
-        private string SameScore()
-        {
-            return _scoreLookup[_firstPlayerScoreTimes] +
-                   " All";
+            return IsDifferent() ? IsGamePoint() ? AdvState() : LookupScore() : IsDeuce() ? Deuce() : SameScore();
         }
 
         private static string Deuce()
@@ -58,32 +35,55 @@ namespace TennisKata
             return "Deuce";
         }
 
-        private bool IsDeuce()
+        private string AdvState()
         {
-            return _firstPlayerScoreTimes >= 3;
+            return IsAdv() ? $"{AdvPlayer()} Adv" : $"{AdvPlayer()} Win";
         }
 
-        private bool IsDifferentScore()
+        private bool IsGamePoint()
         {
-            return _firstPlayerScoreTimes != _secondPlayerScoreTimes;
+            return _firstPlayerScore > 3 || _secondPlayerScore > 3;
+        }
+
+        private bool IsAdv()
+        {
+            return Math.Abs(_firstPlayerScore - _secondPlayerScore) == 1;
         }
 
         private string AdvPlayer()
         {
-            var advPlayer = _firstPlayerScoreTimes > _secondPlayerScoreTimes
-                ? _firstPlayer
-                : _secondPlayer;
+            var advPlayer = _firstPlayerScore > _secondPlayerScore ? _firstPlayer : _secondPlayer;
             return advPlayer;
+        }
+
+        private bool IsDeuce()
+        {
+            return _firstPlayerScore >= 3;
+        }
+
+        private bool IsDifferent()
+        {
+            return _firstPlayerScore != _secondPlayerScore;
+        }
+
+        private string LookupScore()
+        {
+            return $"{_scoreLookup[_firstPlayerScore]} {_scoreLookup[_secondPlayerScore]}";
+        }
+
+        private string SameScore()
+        {
+            return $"{_scoreLookup[_firstPlayerScore]} All";
         }
 
         public void FirstPlayerScore()
         {
-            _firstPlayerScoreTimes++;
+            _firstPlayerScore++;
         }
 
         public void SecondPlayerScore()
         {
-            _secondPlayerScoreTimes++;
+            _secondPlayerScore++;
         }
     }
 }
