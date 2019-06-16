@@ -1,6 +1,6 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace TennisKata2
+namespace TennisKata
 {
     [TestClass]
     public class TennisTests
@@ -67,43 +67,38 @@ namespace TennisKata2
         [TestMethod]
         public void Deuce()
         {
-            GivenDeuce();
+            GivenFirstPlayerScoreTimes(3);
+            GivenSecondPlayerScoreTimes(3);
             ScoreShouldBe("Deuce");
         }
 
         [TestMethod]
         public void FirstPlayer_Adv()
         {
-            GivenDeuce();
-            GivenFirstPlayerScoreTimes(1);
+            GivenFirstPlayerScoreTimes(4);
+            GivenSecondPlayerScoreTimes(3);
             ScoreShouldBe("Joey Adv");
         }
 
         [TestMethod]
         public void SecondPlayer_Adv()
         {
-            GivenDeuce();
-            GivenSecondPlayerScoreTimes(1);
+            GivenFirstPlayerScoreTimes(3);
+            GivenSecondPlayerScoreTimes(4);
             ScoreShouldBe("Tom Adv");
         }
 
         [TestMethod]
         public void SecondPlayer_Win()
         {
-            GivenDeuce();
-            GivenSecondPlayerScoreTimes(2);
-            ScoreShouldBe("Tom Win");
-        }
-
-        private void GivenDeuce()
-        {
             GivenFirstPlayerScoreTimes(3);
-            GivenSecondPlayerScoreTimes(3);
+            GivenSecondPlayerScoreTimes(5);
+            ScoreShouldBe("Tom Win");
         }
 
         private void GivenSecondPlayerScoreTimes(int times)
         {
-            for (var i = 0; i < times; i++)
+            for (int i = 0; i < times; i++)
             {
                 _tennis.SecondPlayerScore();
             }
@@ -111,7 +106,7 @@ namespace TennisKata2
 
         private void GivenFirstPlayerScoreTimes(int times)
         {
-            for (var i = 0; i < times; i++)
+            for (int i = 0; i < times; i++)
             {
                 _tennis.FirstPlayerScore();
             }

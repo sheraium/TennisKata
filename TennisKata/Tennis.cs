@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace TennisKata2
+namespace TennisKata
 {
     public class Tennis
     {
@@ -30,19 +30,19 @@ namespace TennisKata2
             return IsDifferent() ? IsGamePoint() ? AdvState() : LookupScore() : IsDeuce() ? Deuce() : SameScore();
         }
 
-        private static string Deuce()
-        {
-            return "Deuce";
-        }
-
         private string AdvState()
         {
-            return IsAdv() ? $"{AdvPlayer()} Adv" : $"{AdvPlayer()} Win";
+            if (IsAdv())
+            {
+                return $"{AdvPlayer()} Adv";
+            }
+
+            return $"{AdvPlayer()} Win";
         }
 
         private bool IsGamePoint()
         {
-            return _firstPlayerScore > 3 || _secondPlayerScore > 3;
+            return _firstPlayerScore >= 3 && _secondPlayerScore >= 3;
         }
 
         private bool IsAdv()
@@ -52,13 +52,18 @@ namespace TennisKata2
 
         private string AdvPlayer()
         {
-            var advPlayer = _firstPlayerScore > _secondPlayerScore ? _firstPlayer : _secondPlayer;
-            return advPlayer;
+            return _firstPlayerScore > _secondPlayerScore
+                ? _firstPlayer : _secondPlayer;
         }
 
         private bool IsDeuce()
         {
             return _firstPlayerScore >= 3;
+        }
+
+        private static string Deuce()
+        {
+            return "Deuce";
         }
 
         private bool IsDifferent()
