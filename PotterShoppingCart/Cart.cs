@@ -17,54 +17,53 @@ namespace PotterShoppingCart
             {5, 0.75m},
         };
 
-        public decimal Checkout(IEnumerable<Book> books)
+        public decimal CheckOut(IEnumerable<Book> books)
         {
-            var suiteOfList = GetSuiteByDefault(books);
+            var suites = GetSuitesByDefault(books);
 
-            Conver3And5PairTo4And4Pair(suiteOfList);
+            Convert3And5PairTo4And4Pair(suites);
 
-
-            return suiteOfList.Sum(s => AmountOfEachSuite(s.Value));
+            return suites.Sum(s => AmountOfEachSuite(s.Value));
         }
 
-        private static Dictionary<int, List<Book>> GetSuiteByDefault(IEnumerable<Book> books)
+        private static void Convert3And5PairTo4And4Pair(Dictionary<int, List<Book>> suites)
         {
-            var unCheckOutBooks = books.ToList();
-            var suiteOfList = new Dictionary<int, List<Book>>();
+            var fiveBooksOfSuite = suites.Where(x => x.Value.Count == 5).ToList();
+            var threeBooksOfSuite = suites.Where(x => x.Value.Count == 3).ToList();
+
+            var fiveAndThreePairs = fiveBooksOfSuite.Zip(threeBooksOfSuite, (five, three) =>
+                new {five, three});
+
+            foreach (var pair in fiveAndThreePairs)
+            {
+                var first = pair.five.Value.Except(pair.three.Value).First();
+                suites[pair.five.Key].Remove(first);
+                suites[pair.three.Key].Add(first);
+            }
+        }
+
+        private static Dictionary<int, List<Book>> GetSuitesByDefault(IEnumerable<Book> books)
+        {
+            var suites = new Dictionary<int, List<Book>>();
             var index = 0;
-            while (unCheckOutBooks.Any())
+
+            var unCheckoutBooks = books.ToList();
+
+            while (unCheckoutBooks.Any())
             {
-                var suite = unCheckOutBooks.GroupBy(b => b.ISBN).Select(b => b.First()).ToList();
-                suiteOfList.Add(index++, suite);
-                unCheckOutBooks = unCheckOutBooks.Except(suite).ToList();
+                var suite = unCheckoutBooks.GroupBy(b => b.ISBN).Select(x => x.First()).ToList();
+                suites.Add(index++, suite);
+
+                unCheckoutBooks = unCheckoutBooks.Except(suite).ToList();
             }
 
-            return suiteOfList;
+            return suites;
         }
 
-        private static void Conver3And5PairTo4And4Pair(Dictionary<int, List<Book>> suiteOfList)
+        private decimal AmountOfEachSuite(IEnumerable<Book> suite)
         {
-            var fiveBooksOfSuite = suiteOfList.Where(s => s.Value.Count == 5).ToList();
-            var threeBooksOfSuite = suiteOfList.Where(s => s.Value.Count == 3).ToList();
-
-            var threeAndFivePair = fiveBooksOfSuite.Zip(threeBooksOfSuite, (five, three) => new {five, three});
-
-            foreach (var pair in threeAndFivePair)
-            {
-                var firstDiffBetween3And5 = pair.five.Value.Except(pair.three.Value).First();
-                suiteOfList[pair.five.Key].Remove(firstDiffBetween3And5);
-                suiteOfList[pair.three.Key].Add(firstDiffBetween3And5);
-            }
-        }
-
-        private decimal AmountOfEachSuite(List<Book> s)
-        {
-            return GetSuiteDiscount(s) * s.Count * Price;
-        }
-
-        private decimal GetSuiteDiscount(List<Book> s)
-        {
-            return _discount[s.Count];
+            var count = suite.Count();
+            return _discount[count] * count * Price;
         }
     }
 }

@@ -3,15 +3,6 @@ using NUnit.Framework;
 
 namespace PotterShoppingCart
 {
-    public static class AssertHelper
-    {
-        public static void CheckOutShouldBe(this List<Book> books, int expected)
-        {
-            var cart = new Cart();
-            Assert.AreEqual(expected, cart.Checkout(books));
-        }
-    }
-
     [TestFixture]
     public class PotterShoppingCartTests
     {
@@ -19,7 +10,8 @@ namespace PotterShoppingCart
         public void no_book()
         {
             var books = new List<Book>();
-            books.CheckOutShouldBe(0);
+            var cart = new Cart();
+            Assert.AreEqual(0, cart.CheckOut(books));
         }
 
         [Test]
@@ -29,7 +21,8 @@ namespace PotterShoppingCart
             {
                 new Book() {ISBN = "1"},
             };
-            books.CheckOutShouldBe(100);
+            var cart = new Cart();
+            Assert.AreEqual(100, cart.CheckOut(books));
         }
 
         [Test]
@@ -40,7 +33,8 @@ namespace PotterShoppingCart
                 new Book() {ISBN = "1"},
                 new Book() {ISBN = "1"},
             };
-            books.CheckOutShouldBe(200);
+            var cart = new Cart();
+            Assert.AreEqual(200, cart.CheckOut(books));
         }
 
         [Test]
@@ -51,7 +45,8 @@ namespace PotterShoppingCart
                 new Book() {ISBN = "1"},
                 new Book() {ISBN = "2"},
             };
-            books.CheckOutShouldBe(190);
+            var cart = new Cart();
+            Assert.AreEqual(190, cart.CheckOut(books));
         }
 
         [Test]
@@ -63,7 +58,8 @@ namespace PotterShoppingCart
                 new Book() {ISBN = "2"},
                 new Book() {ISBN = "3"},
             };
-            books.CheckOutShouldBe(270);
+            var cart = new Cart();
+            Assert.AreEqual(270, cart.CheckOut(books));
         }
 
         [Test]
@@ -76,7 +72,8 @@ namespace PotterShoppingCart
                 new Book() {ISBN = "3"},
                 new Book() {ISBN = "4"},
             };
-            books.CheckOutShouldBe(320);
+            var cart = new Cart();
+            Assert.AreEqual(320, cart.CheckOut(books));
         }
 
         [Test]
@@ -90,7 +87,8 @@ namespace PotterShoppingCart
                 new Book() {ISBN = "4"},
                 new Book() {ISBN = "5"},
             };
-            books.CheckOutShouldBe(375);
+            var cart = new Cart();
+            Assert.AreEqual(375, cart.CheckOut(books));
         }
 
         [Test]
@@ -106,7 +104,8 @@ namespace PotterShoppingCart
                 new Book() {ISBN = "4"},
                 new Book() {ISBN = "5"},
             };
-            books.CheckOutShouldBe(475);
+            var cart = new Cart();
+            Assert.AreEqual(475, cart.CheckOut(books));
         }
 
         [Test]
@@ -124,7 +123,8 @@ namespace PotterShoppingCart
                 new Book() {ISBN = "4"},
                 new Book() {ISBN = "5"},
             };
-            books.CheckOutShouldBe(565);
+            var cart = new Cart();
+            Assert.AreEqual(565, cart.CheckOut(books));
         }
 
         [Test]
@@ -144,7 +144,8 @@ namespace PotterShoppingCart
                 new Book() {ISBN = "4"},
                 new Book() {ISBN = "5"},
             };
-            books.CheckOutShouldBe(640);
+            var cart = new Cart();
+            Assert.AreEqual(640, cart.CheckOut(books));
         }
 
         [Test]
@@ -169,7 +170,8 @@ namespace PotterShoppingCart
 
                 new Book() {ISBN = "5"},
             };
-            books.CheckOutShouldBe(960);
+            var cart = new Cart();
+            Assert.AreEqual(960, cart.CheckOut(books));
         }
     }
 }
